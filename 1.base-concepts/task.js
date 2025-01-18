@@ -12,7 +12,5 @@ function solveEquation(a, b, c) {
 		var root2 = (-b - Math.sqrt(d)) / (2 * a);
 		return +root1 + ' и ' + root2;
 	}
-	console.log(solveEquation())
-
-	function calculateTotalMortgage(percent, contribution, amount, countMonths) {}
 }
+	console.log(solveEquation);
