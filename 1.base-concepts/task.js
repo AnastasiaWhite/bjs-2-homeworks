@@ -2,15 +2,19 @@
 
 function solveEquation(a, b, c) {
 	let arr = [];
+  let root1;
+  let root2;  
 	let d = b ** 2 - 4 * a * c;
 	if (d < 0) {
-		return;
-	} else if (d === 0) {
-		return +(-b / (2 * a));
-	} else {
-		var root1 = (-b + Math.sqrt(d)) / (2 * a);
-		var root2 = (-b - Math.sqrt(d)) / (2 * a);
-		return +root1 + ' и ' + root2;
-	}
+    arr.push[0];
+  } else if (d === 0) {
+		root1 = - b / (2 * a);
+arr.push (root1);
+} else if (d > 0) {
+    let root1 = (- b + Math.sqrt(d)) / (2 * a);
+		let root2 = (- b - Math.sqrt(d)) / (2 * a);
+		arr.push (root1, root2);
 }
-	console.log(solveEquation);
+return arr;
+} 
+
