@@ -1,147 +1,147 @@
 class PrintEditionItem {
-    constructor(name, releaseDate, pagesCount) {
-        this.name = name;
-        this.releaseDate = releaseDate;
-        this.pagesCount = pagesCount;
-        this._state = 100;  
-        this.type = null;  
-    }
-    
-    fix() {
-        this._state = Math.min(this._state * 1.5, 100);  
-    }
+	constructor(name, releaseDate, pagesCount) {
+		this.name = name;
+		this.releaseDate = releaseDate;
+		this.pagesCount = pagesCount;
+		this._state = 100;
+		this.type = null;
+	}
 
- 
-    set state(value) {
-        if (value < 0) {
-            this._state = 0;
-        } else if (value > 100) {
-            this._state = 100;
-        } else {
-            this._state = value;
-        }
-    }
- 
-    get state() {
-        return this._state;
-    }
+	fix() {
+		this._state = Math.min(this._state * 1.5, 100);
+	}
+
+
+	set state(value) {
+		if (value < 0) {
+			this._state = 0;
+		} else if (value > 100) {
+			this._state = 100;
+		} else {
+			this._state = value;
+		}
+	}
+
+	get state() {
+		return this._state;
+	}
 }
 class Magazine extends PrintEditionItem {
-    constructor(name, releaseDate, pagesCount) {
-        super(name, releaseDate, pagesCount);
-        this.type = "magazine"; 
-    }
+	constructor(name, releaseDate, pagesCount) {
+		super(name, releaseDate, pagesCount);
+		this.type = "magazine";
+	}
 }
 
 class Book extends PrintEditionItem {
-    constructor(author, name, releaseDate, pagesCount) {
-        super(name, releaseDate, pagesCount);
-        this.author = author;  
-        this.type = "book"; 
-    }
+	constructor(author, name, releaseDate, pagesCount) {
+		super(name, releaseDate, pagesCount);
+		this.author = author;
+		this.type = "book";
+	}
 }
 
 class NovelBook extends Book {
-    constructor(author, name, releaseDate, pagesCount) {
-        super(author, name, releaseDate, pagesCount);
-        this.type = "novel";  
-    }
+	constructor(author, name, releaseDate, pagesCount) {
+		super(author, name, releaseDate, pagesCount);
+		this.type = "novel";
+	}
 }
 class FantasticBook extends Book {
-    constructor(author, name, releaseDate, pagesCount) {
-        super(author, name, releaseDate, pagesCount);
-        this.type = "fantastic";  
-    }
+	constructor(author, name, releaseDate, pagesCount) {
+		super(author, name, releaseDate, pagesCount);
+		this.type = "fantastic";
+	}
 }
 class DetectiveBook extends Book {
-    constructor(author, name, releaseDate, pagesCount) {
-        super(author, name, releaseDate, pagesCount);
-        this.type = "detective";  
-    }
+	constructor(author, name, releaseDate, pagesCount) {
+		super(author, name, releaseDate, pagesCount);
+		this.type = "detective";
+	}
 }
 
 class Library {
-    constructor(name) {
-        this.name = name;  
-        this.books = [];  
-    }
+	constructor(name) {
+		this.name = name;
+		this.books = [];
+	}
 
-    
-    addBook(book) {
-        if (book.state > 30) {
-            this.books.push(book);
-        } else {
-            console.log(`Книга ${book.name} не может быть добавлена, так как её состояние меньше 30.`);
-        }
-    }
- 
-    findBookBy(type, value) {
-        for (const book of this.books) {
-            if (book[type] === value) {
-                return book;
-            }
-        }
-        return null;  
-    }
 
-   
-    giveBookByName(bookName) {
-        const bookIndex = this.books.findIndex(book => book.name === bookName);
-        if (bookIndex !== -1) {
-            return this.books.splice(bookIndex, 1)[0];    
-        }
-        return null;  
-    }
+	addBook(book) {
+		if (book.state > 30) {
+			this.books.push(book);
+		} else {
+			console.log(`Книга ${book.name} не может быть добавлена, так как её состояние меньше 30.`);
+		}
+	}
+
+	findBookBy(type, value) {
+		for (const book of this.books) {
+			if (book[type] === value) {
+				return book;
+			}
+		}
+		return null;
+	}
+
+
+	giveBookByName(bookName) {
+		const bookIndex = this.books.findIndex(book => book.name === bookName);
+		if (bookIndex !== -1) {
+			return this.books.splice(bookIndex, 1)[0];
+		}
+		return null;
+	}
 }
 
 class Student {
-    constructor(name) {
-        this.name = name;  
-        this.marks = {};  
-    }
+	constructor(name) {
+		this.name = name;
+		this.marks = {};
+	}
 
-   
-    addMark(mark, subject) {
-     
-        if (mark < 2 || mark > 5) {
-            console.log(`Оценка ${mark} не может быть добавлена, так как она меньше 2 или больше 5.`);
-            return;
-        }
 
-        
-        if (!this.marks[subject]) {
-            this.marks[subject] = [];  
-        }
+	addMark(mark, subject) {
 
-       
-        this.marks[subject].push(mark);
-    }
+		if (mark < 2 || mark > 5) {
+			console.log(`Оценка ${mark} не может быть добавлена, так как она меньше 2 или больше 5.`);
+			return;
+		}
 
-    
-    getAverageBySubject(subject) {
-       
-        if (!this.marks[subject] || this.marks[subject].length === 0) {
-            return 0;  
-        }
 
-         
-        const total = this.marks[subject].reduce((sum, mark) => sum + mark, 0);
-        return total / this.marks[subject].length;  
-    }
+		if (!this.marks[subject]) {
+			this.marks[subject] = [];
+		}
 
-    
-    getAverage() {
-        const subjects = Object.keys(this.marks);
-        
-        
-        if (subjects.length === 0) {
-            return 0;  
-        }
 
-        const totalAverage = subjects.reduce((sum, subject) => {
-            return sum + this.getAverageBySubject(subject);
-        }, 0);
+		this.marks[subject].push(mark);
+	}
 
-        return totalAverage / subjects.length;  
-    }
+
+	getAverageBySubject(subject) {
+
+		if (!this.marks[subject] || this.marks[subject].length === 0) {
+			return 0;
+		}
+
+
+		const total = this.marks[subject].reduce((sum, mark) => sum + mark, 0);
+		return total / this.marks[subject].length;
+	}
+
+
+	getAverage() {
+		const subjects = Object.keys(this.marks);
+
+
+		if (subjects.length === 0) {
+			return 0;
+		}
+
+		const totalAverage = subjects.reduce((sum, subject) => {
+			return sum + this.getAverageBySubject(subject);
+		}, 0);
+
+		return totalAverage / subjects.length;
+	}
 }
